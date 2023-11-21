@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorites Page</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <style>
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .favorites-container {
+      gap: 20px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .imageCard {
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cat.html">Cat Page</a></li>
+          <li><a href="favourites.html">Favorites</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h1>Favorites</h1>
+    <div id="favorites-container" class="favorites-container"></div>
+  </body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const favoritesContainer = document.getElementById("favorites-container");
+
+    displayFavorites();
+
+    function displayFavorites() {
+      favoritesContainer.innerHTML = "";
+
+      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+      favorites.forEach((imageUrl) => {
+        const favoriteCard = createFavoriteCard(imageUrl);
+        favoritesContainer.appendChild(favoriteCard);
+      });
+    }
+
+    function createFavoriteCard(imageUrl) {
+      const card = document.createElement("div");
+      card.classList.add("favorite-card");
+
+      card.innerHTML = `
+      <img src="${imageUrl}" alt="Favorite Cat Image">
+      <button onclick="toggleFavorite('${imageUrl}')">Remove from Favorites</button>
+    `;
+
+      return card;
+    }
+  });
+
+  function toggleFavorite(imageUrl) {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    const index = favorites.indexOf(imageUrl);
+    if (index === -1) {
+      favorites.push(imageUrl);
+    } else {
+      favorites.splice(index, 1);
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    displayFavorites();
+  }
+</script>
