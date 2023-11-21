@@ -89,27 +89,14 @@ nav a {
   cursor: pointer;
 }
 
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination-container button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
+.pagination-container,
 #pagination-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
+.pagination-container button,
 #pagination-container button {
   background-color: #007bff;
   color: #fff;
@@ -121,6 +108,14 @@ nav a {
   transition: background-color 0.3s ease;
 }
 
+.pagination-container button:hover,
 #pagination-container button:hover {
   background-color: #0056b3;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  #breeds-container {
+    grid-template-columns: auto;
+  }
 }
