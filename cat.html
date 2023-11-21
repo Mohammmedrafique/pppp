@@ -14,10 +14,11 @@
     }
 
     .cat-container {
-      gap: 20px;
-      padding: 20px;
       display: grid;
-      grid-template-columns: auto auto;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+      justify-content: space-around;
+      margin: 10px;
     }
 
     img {
@@ -25,6 +26,17 @@
       height: 500px;
       display: block;
       margin: 0 auto;
+    }
+    @media screen and (max-width: 768px) {
+      .cat-container {
+        grid-template-columns: 2fr;
+      }
+    }
+
+    @media screen and (max-width: 560px) {
+      .cat-container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
   <body>

@@ -36,7 +36,8 @@ nav a {
 
 #breeds-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
   justify-content: space-around;
   margin: 10px;
 }
@@ -45,8 +46,6 @@ nav a {
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
-  margin: 10px;
-  width: 300px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -116,12 +115,12 @@ nav a {
 /* Media Queries */
 @media screen and (max-width: 768px) {
   #breeds-container {
-    grid-template-columns: auto auto;
+    grid-template-columns: 2fr;
   }
 }
 
 @media screen and (max-width: 560px) {
   #breeds-container {
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr;
   }
 }
